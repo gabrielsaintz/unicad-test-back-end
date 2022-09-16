@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Delivery {
+  id                  Int      @id @default(autoincrement())
+  name                String   @db.VarChar(200)
+  delivery_date       String
+  start_address_name  String
+  start_coordinates   Json
+  dest_addres_name    String
+  destiny_coordinates Json
+  created_at          DateTime @default(now())
+
+  @@map("deliveries")
+}
